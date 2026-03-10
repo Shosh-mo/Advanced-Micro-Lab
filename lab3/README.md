@@ -94,7 +94,6 @@ lab3/
 | Yosys | 0.9+ | Synthesis |
 | Skywater 130nm PDK | `sky130` | ASIC synthesis target |
 | GF180MCU PDK | `gf180mcu` | ASIC synthesis target |
-| iCE40 / Cyclone LP | — | FPGA synthesis target |
 
 ---
 
