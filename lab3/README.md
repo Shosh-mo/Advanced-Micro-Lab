@@ -144,42 +144,6 @@ vvp sim
 gtkwave divider_verify.vcd
 ```
 
-### Synthesis (Yosys)
-
-```bash
-yosys synth.ys
-```
-
-The `synth.ys` script reads all Verilog files, shows the RTL schematic before and after optimisation, and synthesises for all three technology targets:
-
-```tcl
-read_verilog Newton_Raphson_Divider.v
-read_verilog NRD.v
-read_verilog DFF_rg.v
-read_verilog start1_reg.v
-read_verilog mux_unit.v
-read_verilog prescaler.v
-read_verilog postscaler.v
-
-hierarchy -check -top Newton_Raphson_Divider
-proc
-
-# show before optimisation
-show -format png -prefix before_opt Newton_Raphson_Divider
-
-# optimise
-opt_expr
-opt_clean
-opt
-flatten
-opt
-
-# show after optimisation
-show -format png -prefix after_opt Newton_Raphson_Divider
-
-# synthesise
-synth -top Newton_Raphson_Divider
-stat
 ```
 
 ---
