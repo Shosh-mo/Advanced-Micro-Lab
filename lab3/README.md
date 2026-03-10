@@ -2,7 +2,7 @@
 
 ## Objective
 
-Implement a 16-bit fixed-point hardware divider on FPGA using the Newton-Raphson iterative method. The design replaces the division `A/D` with `A × (1/D)`, where the reciprocal `1/D` is computed iteratively with quadratic convergence. The result is verified against a reference non-restoring integer divider and synthesised for multiple technology targets.
+Implement a 18-bit fixed-point hardware divider on FPGA using the Newton-Raphson iterative method. The design replaces the division `A/D` with `A × (1/D)`, where the reciprocal `1/D` is computed iteratively with quadratic convergence. The result is verified against a reference non-restoring integer divider and synthesised for multiple technology targets.
 
 ---
 
@@ -118,14 +118,6 @@ All 10 testbench cases pass with exact integer match after rounding:
 
 The design is extremely resource-efficient. Both optimised and non-optimised synthesis runs produce **identical** resource numbers, confirming the design is already optimal as written. The 8 DSP blocks confirm that all Newton-Raphson multiplications are mapped to dedicated embedded DSP hardware, leaving the general logic fabric nearly untouched at only 0.01% utilisation.
 
-### Comparison with Reference Paper (Bureneva et al., 2023)
-
-| Implementation | Logic Elements | Registers | DSP Blocks | Fmax |
-|---|---|---|---|---|
-| LPM_Divider (library) | 1039 | 99 | — | 17 MHz |
-| Non-restoring divider | 101 | 75 | — | 233 MHz |
-| Newton-Raphson (paper) | 95 | 40 | 9 | 86 MHz |
-| Newton-Raphson (this work) | 30 LUTs | 126 FFs | 8 | — |
 
 ---
 
