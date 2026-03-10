@@ -121,30 +121,6 @@ The design is extremely resource-efficient. Both optimised and non-optimised syn
 
 ---
 
-## How to Reproduce
-
-### Simulation
-
-```bash
-# compile
-iverilog -o sim \
-    Newton_Raphson_Divider.v \
-    NRD.v \
-    DFF_rg.v \
-    start1_reg.v \
-    mux_unit.v \
-    prescaler.v \
-    postscaler.v \
-    tb_divider_verify.v
-
-# run
-vvp sim
-
-# view waveforms
-gtkwave divider_verify.vcd
-```
-
-```
 
 ---
 
