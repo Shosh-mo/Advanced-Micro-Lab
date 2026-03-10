@@ -24,15 +24,7 @@ x₀ = 48/17 − (32/17) × D
 This converges to full 16-bit precision in **4–5 iterations**, with the number of correct bits doubling each cycle (quadratic convergence).
 
 ### Fixed-Point Format
-All values use **Q7.9 fixed-point** format with scale factor `512 = 2⁹`:
-
-| Real Value | Q7.9 Hex | Notes |
-|---|---|---|
-| 0.5 | `0x100` | minimum valid divisor |
-| 1.0 | `0x200` | |
-| 2.0 | `0x400` | constant in iteration |
-| 48/17 | `0x5A5` | x₀ constant |
-| 32/17 | `0x3C3` | x₀ constant |
+All values use **Q7.9 fixed-point** format with scale factor `512 = 2⁹`
 
 After each 18×18-bit multiply, bits `[26:9]` are selected to remove one scale factor (`÷ 512`).
 
@@ -200,6 +192,3 @@ stat
 
 ---
 
-## Reference
-
-> O. I. Bureneva and O. U. Kaidanovich, "FPGA-based Hardware Implementation of Fixed-point Division using Newton–Raphson Method," *2023 IV International Conference on Neural Networks and Neurotechnologies (NeuroNT)*, 2023. DOI: 10.1109/NEURONT58640.2023.10175844
