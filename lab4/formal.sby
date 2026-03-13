@@ -1,0 +1,24 @@
+[tasks]
+bmc
+cover
+prove
+ 
+
+[options]
+bmc: mode bmc
+cover: mode cover
+prove: mode prove
+
+depth 100
+
+[engines]
+smtbmc
+
+[script]
+read -formal FF2.v
+read -formal FIFO.v
+prep -top FIFO
+
+[files]
+FF2.v
+FIFO.v
