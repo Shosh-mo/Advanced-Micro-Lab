@@ -1,0 +1,40 @@
+# Read all design files
+read_verilog shift_register.v
+read_verilog register_file.v
+read_verilog mux.v
+read_verilog dmux.v
+read_verilog ff.v
+read_verilog LUT.v
+
+# Set top module
+hierarchy -check -top LUT
+flatten
+show -format dot -prefix netlist_before LUT
+
+proc
+opt
+opt_clean
+show -format dot -prefix netlist_after LUT
+
+# Synthesize
+synth -top LUT
+
+# Map to SKY130 cells
+dfflibmap -liberty /home/asiclab/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty /home/asiclab/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -D 10000
+
+opt
+opt_clean
+
+# Write netlist and stats
+write_verilog -noattr netlist.v
+
+write_blif netlist.blif
+
+stat -liberty /home/asiclab/.ciel/ciel/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+
+
+
+
